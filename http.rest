@@ -1,0 +1,23 @@
+@HOST = http://localhost:3333
+@TOKEN = {{login.response.body.token}}
+
+### AUTHENTICATE
+# @name login
+POST {{HOST}}/sessions
+Content-Type: application/json
+
+{
+  "email": "kalel@justiceleague.com",
+  "password": "123456"
+}
+
+### UPLOAD AVATAR
+POST {{HOST}}/transactions/import
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="import_template.csv"
+Content-Type: text/csv
+
+< ./src/__tests__/import_template.csv
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
